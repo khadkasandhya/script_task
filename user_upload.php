@@ -36,7 +36,7 @@ if (($open = fopen("users.csv", "r")) !== FALSE)
                 // Get row data
     	$name = ucwords(str_replace("'", "''", "$data[0]")); 
         $surname = ucwords(str_replace("'", "''", "$data[1]"));
-        $email = str_replace("'", "''", "$data[2]");
+        $email = strtolower(str_replace("'", "''", "$data[2]"));
                
                 
         $query = "INSERT INTO users (name, surname, email) VALUES ('" . $name . "', '" . $surname . "', '" . $email. "')";
