@@ -29,7 +29,8 @@ if ($mysqli->query($query) === true) {
  echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
 }
 if (($open = fopen("users.csv", "r")) !== FALSE) 
-  {
+  {         
+  	  fgetcsv($open);
   
     while (($data = fgetcsv($open, 1000, ",")) !== FALSE) 
     {        
