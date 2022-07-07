@@ -19,8 +19,8 @@ else{
 $mysqli = new mysqli("localhost", "root", "","demo");
 $query = "CREATE TABLE  users(
 id int,
-name varchar(244),
-surname varchar(244),
+name char(244),
+surname char(244),
 email varchar(244)
 )";
 if ($mysqli->query($query) === true) {
@@ -34,9 +34,12 @@ if (($open = fopen("users.csv", "r")) !== FALSE)
     while (($data = fgetcsv($open, 1000, ",")) !== FALSE) 
     {        
                 // Get row data
-                $name = $data[0];
-                $surname = $data[1];
-                $email = $data[2];
+    	$name = str_replace("'", "''", "$data[0]"); 
+               
+                
+                $surname = str_replace("'", "''", "$data[1]");
+                $email = str_replace("'", "''", "$data[2]");
+               
                 
                 $query = "INSERT INTO users (name, surname, email) VALUES ('" . $name . "', '" . $surname . "', '" . $email. "')";
     if ($mysqli->query($query) === true) {
