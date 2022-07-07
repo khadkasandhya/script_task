@@ -34,13 +34,14 @@ if (($open = fopen("users.csv", "r")) !== FALSE)
     while (($data = fgetcsv($open, 1000, ",")) !== FALSE) 
     {        
                 // Get row data
-    	$name = ucwords(str_replace("'", "''", "$data[0]")); 
-        $surname = ucwords(str_replace("'", "''", "$data[1]"));
+    	$name = ucfirst(strtolower(str_replace("'", "''", "$data[0]"))); 
+        $surname = ucfirst(strtolower(str_replace("'", "''", "$data[1]")));
         $email = strtolower(str_replace("'", "''", "$data[2]"));
                
                 
         $query = "INSERT INTO users (name, surname, email) VALUES ('" . $name . "', '" . $surname . "', '" . $email. "')";
-    if ($mysqli->query($query) === true) {
+    if ($mysqli->query($query) === true) 
+    {
   echo "Table is inserted.";
 } else {
  echo "ERROR: Could not able to execute $sql. " . $mysqli->error;
